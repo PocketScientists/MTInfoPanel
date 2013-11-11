@@ -409,7 +409,7 @@
     
     [self addSubview:titleLabel_];
     
-    detailLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(57.f, 26.f, 251.f, 32.f)];
+    detailLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(57.f, 26.f, 651.f, 32.f)];
     detailLabel_.backgroundColor = [UIColor clearColor];
     detailLabel_.numberOfLines = 0;
     detailLabel_.autoresizingMask = UIViewAutoresizingFlexibleWidth;
