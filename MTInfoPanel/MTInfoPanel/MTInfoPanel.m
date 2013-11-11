@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define MT_RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+#define MT_IOS7_OFFSET ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0 ? 20.0f : 0.0f)
 
 // Private Methods
 
@@ -165,7 +166,7 @@
 {
     MTInfoPanel *panel = [MTInfoPanel infoPanel];
     // panel height when no subtitle set
-    CGFloat panelHeight = 50.f;
+    CGFloat panelHeight = 50.f + MT_IOS7_OFFSET;
     
     // update appearance of panel
     panel.titleLabel.textColor = titleColor;
@@ -186,8 +187,8 @@
         panelHeight += 7.f;
     } else {
         panel.detailLabel.hidden = YES;
-        panel.thumbImage.frame = CGRectMake(15, 5, 35, 35);
-        panel.titleLabel.frame = CGRectMake(57, 12, 240, 21);
+        panel.thumbImage.frame = CGRectMake(15, 5 + MT_IOS7_OFFSET, 35, 35);
+        panel.titleLabel.frame = CGRectMake(57, 12 + MT_IOS7_OFFSET, 240, 21);
     }
     
     if (image != nil) {
@@ -375,7 +376,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 + (MTInfoPanel *)infoPanel {
-    MTInfoPanel *panel =  [[MTInfoPanel alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, 50.f)];
+    MTInfoPanel *panel =  [[MTInfoPanel alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, 50.f + MT_IOS7_OFFSET)];
     
     CATransition *transition = [CATransition animation];
 	transition.duration = 0.25;
@@ -398,7 +399,7 @@
     backgroundGradient_.alpha = 0.88f;
     [self addSubview:backgroundGradient_];
     
-    titleLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(57.f,7.f,240.f,19.f)];
+    titleLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(57.f,7.f + MT_IOS7_OFFSET,240.f,19.f)];
     titleLabel_.backgroundColor = [UIColor clearColor];
     titleLabel_.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
     
@@ -409,13 +410,13 @@
     
     [self addSubview:titleLabel_];
     
-    detailLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(57.f, 26.f, 251.f, 32.f)];
+    detailLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(57.f, 26.f + MT_IOS7_OFFSET, 251.f, 32.f)];
     detailLabel_.backgroundColor = [UIColor clearColor];
     detailLabel_.numberOfLines = 0;
     detailLabel_.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self addSubview:detailLabel_];
     
-    thumbImage_ = [[UIImageView alloc] initWithFrame:CGRectMake(9.f, 9.f, 37.f, 34.f)];
+    thumbImage_ = [[UIImageView alloc] initWithFrame:CGRectMake(9.f, 9.f + MT_IOS7_OFFSET, 37.f, 34.f)];
     [self addSubview:thumbImage_];
     
     self.onTouched = @selector(hidePanel);
