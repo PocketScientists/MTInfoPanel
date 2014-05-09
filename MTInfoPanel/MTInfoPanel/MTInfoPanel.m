@@ -301,7 +301,7 @@
     // changing these changes the original, so we copy it
     CGFloat *oldComponents = (CGFloat *)CGColorGetComponents([sourceColor CGColor]);
     CGFloat newComponents[4];
-    int numComponents = CGColorGetNumberOfComponents([sourceColor CGColor]);
+    size_t numComponents = CGColorGetNumberOfComponents([sourceColor CGColor]);
     
     switch (numComponents) {
         case 2: {
